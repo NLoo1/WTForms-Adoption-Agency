@@ -3,11 +3,23 @@
 {% block title %} All pets {% endblock %}
 
 {% block content %}
-    <h1>All pets</h1>
+    <div class="container bg-light border mt-3">
+        <h1>All pets</h1>
+        {% for msg in get_flashed_messages() %}
+        {{ msg }}
+        {% endfor %}
         <ul>
             {% for pet in pets %}
-                <li>{{pet.name}}</li>
+                <li><i class="fa-solid fa-paw"></i> <a href="/pets/{{pet.id}}">{{pet.name}}</a>
+                    {% if pet.available %}
+                        <small class="text-success">(Available)</small>
+                    {% else %}
+                        <small class="text-danger">(Unavailable)</small>
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
-    
+
+        <a class="btn btn-primary mb-3" href="/add">Add new pet</a>
+    </div>
 {% endblock %}

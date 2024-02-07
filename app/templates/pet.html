@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{pet.name}}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="card bg-light">
+        {% if pet.image_url %}
+            <img src="{{pet.image_url}}" class="card-img-top" alt="{{pet.name}}">
+        {% else %}
+        {% endif %}
+        <div class="card-body">
+            <h1 class="card-title">{{pet.name}}</h1>
+            <p class="card-text">Species: {{pet.species}}</p>
+
+            {% if pet.age %}
+            <p class="card-text">Age: {{pet.age}}</p>
+            {% else %}
+            {% endif %}
+            
+            {% if pet.notes %}
+            <p class="card-text">Notes: {{pet.notes}}</p>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+    <a href="/" class="btn btn-primary mt-3">Back</a>
+    <a href="/pets/{{pet.id}}/edit" class="btn btn-primary mt-3">Edit</a>
+</div>
+
+
+
+{% endblock %}
