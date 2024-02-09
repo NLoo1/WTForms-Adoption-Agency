@@ -1,11 +1,11 @@
-import pdb
 from unittest import TestCase
+import unittest
 from flask import Flask
-from app import app
-from models import Pet, db
+from app.app import app, create_app
+from app.models import Pet, db
 from flask_sqlalchemy import SQLAlchemy 
-import os
 
+app = create_app(config_class='config.TestConfig')
 
 with app.app_context():
     db.drop_all()   
