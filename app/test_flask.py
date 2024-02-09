@@ -6,16 +6,6 @@ from models import Pet, db
 from flask_sqlalchemy import SQLAlchemy 
 import os
 
-os.environ['DB_USERNAME'] = 'N'
-os.environ['DB_PASSWORD'] = ' '
-os.environ['DB_NAME'] = 'pets_test'
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.environ['DB_USERNAME']}:{os.environ['DB_PASSWORD']}@localhost/{os.environ['DB_NAME']}"
-
-
-app.config['SQLALCHEMY_ECHO'] = False
-app.config['TESTING'] = True
-app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
-app.config['SECRET_KEY'] = 'abc123'
 
 with app.app_context():
     db.drop_all()   
