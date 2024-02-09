@@ -1,7 +1,7 @@
 from flask import Flask, flash, render_template, request, redirect
-from app.forms import AddPetForm
-from .__init__ import create_app
-from .models import db, Pet
+from forms import AddPetForm
+from __init__ import create_app
+from models import db, Pet
 
 app = create_app()
 db.app = app
@@ -14,17 +14,6 @@ def home():
 @app.route("/add", methods=['GET', 'POST'])
 def add_pet():
     form = AddPetForm()
-
-# name= StringField("Pet Name",
-#                       validators=[InputRequired()])
-#     species= StringField("Species",
-#                       validators=[InputRequired()])
-#     photo_url= StringField("Photo URL",
-#                       validators=[Optional()])
-#     age= IntegerField("Age",
-#                       validators=[Optional()])
-#     Notes= TextAreaField("Notes",
-#                       validators=[Optional()])
     if form.validate_on_submit():
         name = form.name.data
         species=form.species.data
@@ -56,7 +45,7 @@ def edit_pet(pet_id):
         pet.notes=form.notes.data
         db.session.commit()
         flash(f'{pet.name} edited.')
-        return redirect("/")
+        return redirect(f'/pets/{pet_id}')
     else:
         return render_template('add-pet.html', form=form)
 

@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
-from .models import db
+from models import db
 
 debug = DebugToolbarExtension()
 
@@ -21,8 +21,5 @@ def create_app(config_class='config.Config'):
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
     db.init_app(app)
-    # Import and register blueprints, if any
-    # app.register_blueprint(user_bp)
-    # app.register_blueprint(post_bp)
 
     return app
